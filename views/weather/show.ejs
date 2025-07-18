@@ -1,0 +1,35 @@
+<!-- views/applications/show.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= weather.weather %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= weather.fahrenheit %> at <%= weather.state %></h1>
+    <% if (weather.notes) { %>
+    <p>Notes: <%= weather.notes %></p>
+    <% } %> <% if (weather.state) { %>
+    <a href="<%= weather.state %>">View Track State</a>
+    <% } %>
+    <p>Current type of weather: <%= weather.type %></p>
+      <form
+      action="/weather"
+      method="POST"
+    >
+      <button type="submit">Delete this weather</button>
+    </form>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

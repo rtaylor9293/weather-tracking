@@ -6,16 +6,15 @@
     <title>Home Page</title>
   </head>
   <body>
-    <% if(user) {%>
-        <h1>Welcome to the App! <%= user.username%></h1>
-        <p>
-            <a href="/auth/sign-out">Sign out</a>
-        </p>
-    <% } else { %>
-        <h1>Welcome guest user</h1>
-        <a href="/auth/sign-up">Sign Up</a>
-        <a href="/auth/sign-in">Sign In</a>
-    <% } %>
+
+
+<body>
+  <%- include('./partials/_navbar.ejs') %>
+  <h1>Weather-tracker</h1>
+  <p>A self weather tracker.</p>
+  <a href="/auth/sign-up">Sign up</a>
+  <a href="/auth/sign-in">Sign in</a>
+</body>
 
     <p>
     </a>

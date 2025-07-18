@@ -1,7 +1,7 @@
 {
   "name": "weather-tracking",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,11 @@
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
-    "mongoose": "^8.16.3"
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.16.3",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
   }
 }

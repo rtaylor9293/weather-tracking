@@ -6,6 +6,7 @@
     <title>Sign In</title>
   </head>
   <body>
+      <%- include('../partials/_navbar.ejs') %> 
     <h1>Sign In</h1>
     <form action="/auth/sign-in" method="POST">
       <label for="username">Username:</label>
@@ -15,6 +16,4 @@
       <input type="password" id="password" name="password" />
 
       <button type="submit">Sign In</button>
-    </form>
-  </body>
-</html>
+<body>

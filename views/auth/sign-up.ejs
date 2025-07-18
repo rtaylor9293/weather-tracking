@@ -6,6 +6,7 @@
     <title>Sign Up</title>
   </head>
   <body>
+      <%- include('../partials/_navbar.ejs') %> 
     <h1>Create a new Account</h1>
     <form action="/auth/sign-up" method="POST">
       <label for="username">Username:</label>
@@ -17,6 +18,7 @@
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" id="confirmPassword" name="confirmPassword" />
       <button type="submit">Sign Up</button>
+      <body>
     </form>
   </body>
 </html>

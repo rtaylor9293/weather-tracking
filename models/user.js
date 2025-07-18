@@ -1,4 +1,15 @@
-const mongoose = require("mongoose")
+
+const mongoose = require("mongoose");
+const weatherSchema = new mongoose.Schema({
+  type: String,
+  notes: String,
+  fahrenheit: Number,
+  state: String,
+  user: {type : mongoose.Schema.Types.ObjectId, ref: 'user'},
+  createdAt: { type: Date, default: Date.now }
+});
+module.exports = mongoose.model("weather", weatherSchema);
+
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -9,8 +20,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
-})
+    },
+
+    weatherSchema: [weatherSchema],
+
+});
 
 const User  = mongoose.model("User", userSchema)
 

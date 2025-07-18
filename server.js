@@ -1,66 +1,52 @@
 const dotenv = require("dotenv");
-// Loads in environment variables from a .env file into process.env
 dotenv.config();
-// console.log(process.env) // this has all our variable from .env
 const express = require("express");
-const app = express();
-const authController = require("./controllers/auth.js");
-const session = require("express-session");
-
 const mongoose = require("mongoose");
-
-const methodOverride = require("method-override");
 const morgan = require("morgan");
+const path = require("path");
+const session = require("express-session");
+const methodOverride = require("method-override");
+const isSignedIn = require('./middleware/is-signed-in');
+const passUserToView = require('./middleware/pass-user-to-view');
+const authController = require("./controllers/auth");
+const weatherController = require("./controllers/weather");
+const app = express();
 
-// Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("connected", () => {
-  console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
+    console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-// Middleware to parse URL-encoded data from forms
+// helps
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: false }));
-// Middleware for using HTTP verbs such as PUT or DELETE
+app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-// Morgan for logging HTTP requests
 app.use(morgan("dev"));
-// attach sessions
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
-// define a middleware to check is user logged in
-const isLoggedIn = (req, res, next) => {
-  if (req.session.user) {
-    next();
-  } else {
-    res.redirect("/auth/sign-in");
-  }
-};
 
-// ROUTES
+app.use(session({
+  secret: "spen101721",
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passUserToView);
+// Routes
 app.get("/", (req, res) => {
-  res.render("index.ejs", {
-    user: req.session.user,
-  });
+  res.redirect("/weather");
+});
+app.use("/auth", authController);      
+app.use("/weather", isSignedIn, weatherController); 
+
+app.get('/users/weather', (req, res) => {
+    res.redirect('/weather');
 });
 
-// /auth/ + any route will be handled by authController
-app.use("/auth", authController);
-
-app.use(isLoggedIn) // any routes under this require login
-
-app.get("/vip-lounge", isLoggedIn, (req, res) => {
-  res.send("Welcome to the VIP lounge, " + req.session.user.username);
-});
-
+app.use('/', weatherController);
 
 app.listen(port, () => {
-  console.log(`The express app is ready on port ${port}!`);
+    console.log(`The express app is ready on port ${port}!`);
 });

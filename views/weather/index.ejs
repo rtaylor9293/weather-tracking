@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Entries</title>
+  <link rel="stylesheet" href="/stylesheet/style.css">
+</head>
+<body>
+  <%- include('../partials/_navbar') %>
+  <h1> your last tracks </h1>
+    <a href="/weather ">Add an Track</a>
+   <main>
+    <h1>All Weather Entries</h1>
+    <a href="/weather">: Add New Entry</a>
+    <ul>
+      <% weatherEntries.forEach(entry => { %>
+        <li>
+          <!-- -->
+          <a href="/weather/<%= entry.id %>">
+            <%= entry.type %> at <%= entry.fahrenheit %>°F in <%= entry.state %>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

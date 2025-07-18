@@ -38,7 +38,7 @@ router.post("/sign-in", async (req, res) => {
   if (!userInDatabase) {
     return res.send("User does not exist");
   }
-
+console.log(req.body.password, userInDatabase.password);
   const validPassword = bcrypt.compareSync(
     req.body.password,
     userInDatabase.password
@@ -50,9 +50,11 @@ router.post("/sign-in", async (req, res) => {
 
   req.session.user = {
     username: userInDatabase.username,
+    _id : userInDatabase._id, 
+    
   };
   req.session.helloWorld = "Hello World";
-  res.redirect("/");
+  res.redirect("/weather");
 });
 
 
