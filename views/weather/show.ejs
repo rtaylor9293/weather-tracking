@@ -1,30 +1,37 @@
-<!-- views/applications/show.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= weather.weather %></title>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= user.username %> </title>
+     <link rel="stylesheet" href="/style.css">
+</head>
+<body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1><%= weather.fahrenheit %> at <%= weather.state %></h1>
-    <% if (weather.notes) { %>
-    <p>Notes: <%= weather.notes %></p>
-    <% } %> <% if (weather.state) { %>
-    <a href="<%= weather.state %>">View Track State</a>
-    <% } %>
-    <p>Current type of weather: <%= weather.type %></p>
-      <form
-      action="/weather"
-      method="POST"
-    >
-      <button type="submit">Delete this weather</button>
+    <h1><%= weather.state %></h1>
+    <ul>
+        <li>fahrenheit: <%= weather.fahrenheit %></li>
+        <li>Notes: <%= weather.notes %></li>
+        <% if (weather.type === 'Sunny') {  %>
+            <li>How's the weather?: it's very Sunny!</li>
+        <% } else if (weather.type === 'rain') { %>
+            <li>How's the weather?: it's raining!</li>
+        <% } else if (weather.type === 'neutral') { %>
+            <li>How's the weather?: nothing much.</li>
+        <% } else if (weather.type === 'windy') { %>
+            <li>How's the weather?: It's very windy!</li>
+        <% } %>
+     </ul>
+    
+    <form action="/users/<%= user._id %>/weather/<%= weather._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this Track</button>
     </form>
-  </body>
-</html>
 
+    <a href="/users/<%= user._id %>/weather/<%= weather._id %>/edit">
+        <button type="submit">Edit this Track</button>
+    </a>
+</body>
+</html>
 
 
 

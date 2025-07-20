@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Weather Entry</title>
-  <link rel="stylesheet" href="/stylesheet/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit this <track></track></title>
+     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <%- include('../partials/_navbar') %>
-  <main>
-    <h1>Edit Weather Entry</h1>
-    <form action="/weather/" method="POST">
-      <div>
-        <label for="type">Type:</label>
-        <input type="text" id="type" name="type" value="<%= entry.type %>" required>
-      </div>
-      <div>
-        <label for="notes">Notes:</label>
-        <textarea id="notes" name="notes" rows="4" cols="40"><%= entry.notes %></textarea>
-      </div>
-      <div>
-        <label for="fahrenheit">Fahrenheit:</label>
-        <input type="number" id="fahrenheit" name="fahrenheit" value="<%= entry.fahrenheit %>" required>
-      </div>
-      <div>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>What would you like to change about <%= weather.type %>?</h1>
+  <form action="/users/<%= user._id %>/weather/" method="POST">
+
+        <label for="fahrenheit">fahrenheit:</label>
+        <input type="number" name="fahrenheit" id="fahrenheit" value="<%= weather.fahrenheit %>">
+
         <label for="state">State:</label>
-        <input type="text" id="state" name="state" value="<%= entry.state %>" required>
-      </div>
-      <button type="submit">Save Changes</button>
+        <input type="text" name="state" id="state" value="<%= weather.state %>">
+
+        <label for="notes">Notes:</label>
+        <textarea type="text" name="notes" id="notes"><%= weather.notes %></textarea>
+
+        <label for="type">type:</label>
+        <select name="type" id="type">
+            <option value="sunny"
+            <%= weather.type === 'sunny' ? 'selected' : '' %>
+            >Sunny!</option>
+
+            <option value="rain"
+            <%= weather.type === 'rain' ? 'selected' : '' %>
+            >rain!</option>
+
+            <option value="neutral"
+            <%= weather.type === 'neutral' ? 'selected' : '' %>
+            >nothing much</option>
+
+            <option value="windy"
+            <%= weather.type === 'windy' ? 'selected' : '' %>
+            >it's very windy!!</option>
+        </select>
+
+        <button type="submit">Update this weatherTracker</button>
     </form>
-    <p><a href="/weather">: Back to Add a new Tracker</a></p>
-    <form
-  action="/weather"
-  method="POST"
-></form>
-  </main>
 </body>
 </html>

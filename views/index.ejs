@@ -1,26 +1,19 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>homepage</title>
-  </head>
-  <body>
-    <% if (user) { %>
-    <h1>Goodbye <%= user.username %> see you soon!</h1>
-    <p>
-      <a href="/auth/sign-out">Sign out</a>
-    </p>
-    <% } else { %>
-    <h1>Welcome to WeatherTracker,</h1>
-    <h2> If you already have an Account please sign-in!!</h2>
-    <p>
-      <a href="/auth/sign-up">Sign up</a> or
-      <a href="/auth/sign-in">Sign in</a>.
-    </p>
-    
-    <% } %>
+<html>
+<head>
+  <title>Homepage</title>
+     <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<% if (user) { %>
+  <h1>Goodbye <%= user.username || 'friend' %>, see you soon!</h1>
+  <a href="/auth/sign-out">Sign out</a><br>
+  <a href="/users/<%= user._id %>/weather">View My Weather</a>
+<% } else { %>
+  <h1>Welcome to WeatherTracker</h1>
+  <p>If you already have an account, please:</p>
+  <a href="/auth/sign-in">Sign in</a><br>
+  <a href="/auth/sign-up">Sign up</a>
+<% } %>
 </body>
 </html>

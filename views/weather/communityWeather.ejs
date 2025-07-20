@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= user.username %></title>
+     <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <% environment.forEach(item => {  %>
+        <h1><%= environment.state %></h1>
+        <ul>
+            <li>Ingredients: <%= item.fahrenheit %></li>
+            <li>Notes: <%= item.notes %></li>
+   
+            <% if (item.type === 'sunny') {  %>
+                <li>Did <%= users.username %> enjoy weather?: Yes very nice outside today</li>
+            <% } else if (item.type === 'rain') { %>
+                <li>Did <%= users.username %> enjoy weather?: it rained all day </li>
+            <% } else if (item.type === 'neutral') { %>
+                <li>Did <%= users.username %> enjoy weather?: it was a decent day.</li>
+            <% } else if (item.type === 'windy') { %>
+                <li>Did <%= users.username %> enjoy weather?: Very windy outside!</li>
+            <% } %>
+        </ul>
+
+    <%  }) %>
+</body>
+</html>
