@@ -1,11 +1,13 @@
-<nav>
-    <a href="/">Home</a>
+<nav class="navbar">
+  <div class="nav-logo">🌤️ Weather Tracker</div>
+  <div class="nav-links">
     <% if (user) { %>
-        <a href="/users/<%= user._id %>/weather">View my weather</a>
-        <a href="/users/<%= user._id %>/weather/new">Add New Item</a>
-        <a href="/auth/sign-out">Sign Out</a>
-    <% } else {  %>
-        <a href="/auth/sign-in">Sign In</a>
-        <a href="/auth/sign-up">Sign Up</a>
-    <%  } %>
+      <a href="/users/<%= user._id %>/weather">Home</a>
+      <a href="/users/<%= user._id %>/weather/new">Add Weather</a>
+      <a href="/auth/sign-out" class="signout-btn">SignOut</a>
+    <% } else { %>
+      <a href="/auth/sign-in">Sign In</a>
+      <a href="/auth/sign-up">Sign Up</a>
+    <% } %>
+  </div>
 </nav>

@@ -3,22 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-     <link rel="stylesheet" href="/style.css">
+    <title>Weather Tracker</title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
+
   <body>
+    <%- include('./partials/_navbar.ejs') %>
 
+    <main class="home-container">
+      <div class="home-card">
+        <h1>Weather Tracker</h1>
+        <p class="subtitle">
+          Track and monitor real-time weather conditions around the world.
+        </p>
 
-<body>
-  <%- include('./partials/_navbar.ejs') %>
-  <h1>Weather-tracker</h1>
-  <p>A self weather tracker.</p>
-  <a href="/auth/sign-up">Sign up</a>
-  <a href="/auth/sign-in">Sign in</a>
-</body>
-
-    <p>
-    </a>
-    </p>
+        <div class="links">
+          <a href="/auth/sign-up" class="btn primary">Sign Up</a>
+          <a href="/auth/sign-in" class="btn secondary">Sign In</a>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
+
