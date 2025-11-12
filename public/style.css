@@ -1,32 +1,36 @@
-/* === GLOBAL STYLES === */
-body {
+/* === Global Reset & Font === */
+ * {
   margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
-  min-height: 100vh;
-  padding-top: 80px;
-  color: #222;
+  padding: 0;
+  box-sizing: border-box;
 }
-/* === NAVIGATION BAR === */
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a0c4ff, #caf0f8);
+  color: #222;
+  padding-top: 80px;
+}
+/* === Navbar === */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.35);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  box-sizing: border-box;
 }
 .nav-logo {
   font-weight: 700;
-  font-size: 1.3rem;
-  color: #222;
+  font-size: 1.4rem;
+  color: #1a1a1a;
+  letter-spacing: 0.5px;
 }
 .nav-links a {
   margin-left: 25px;
@@ -46,98 +50,148 @@ body {
   color: #ff4d4d;
   text-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
 }
-/* === MAIN CONTAINER === */
-.container {
+/* === Home / Welcome Page === */
+.home-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  margin-top: 50px;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #a0c4ff, #caf0f8);
+  padding: 20px;
 }
-/* === WEATHER FORM CARD === */
-.weather-card {
+.home-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 60px 50px;
+  max-width: 480px;
   width: 90%;
-  max-width: 450px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  animation: fadeUp 0.6s ease-out;
-}
-.weather-card h1 {
-  font-size: 1.8rem;
-  color: #222;
   text-align: center;
-  margin-bottom: 20px;
+  animation: fadeUp 0.7s ease-out;
 }
-/* === INPUTS === */
-form label {
-  display: block;
-  margin-top: 15px;
-  font-weight: 600;
+.home-card h1 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: #1a1a1a;
 }
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 8px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s ease;
-  font-size: 1rem;
+.home-card p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 35px;
 }
-form input:focus,
-form select:focus,
-form textarea:focus {
-  outline: none;
-  border-color: #66a6ff;
-  box-shadow: 0 0 10px rgba(102, 166, 255, 0.6);
-}
-/* === SUBMIT BUTTON === */
-.submit-btn {
-  margin-top: 20px;
-  width: 100%;
+.home-card a {
+  display: inline-block;
   background: linear-gradient(90deg, #66a6ff, #89f7fe);
   color: white;
-  border: none;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(102, 166, 255, 0.3);
+}
+.home-card a:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #4b8be0, #6ed0ff);
+  box-shadow: 0 0 18px rgba(102, 166, 255, 0.6);
+}
+/* === Weather Cards / Main Dashboard === */
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 20px;
+}
+.weather-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUp 0.7s ease;
+}
+.weather-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.weather-card h2 {
+  color: #0078ff;
+  margin-bottom: 10px;
+}
+.weather-card p {
+  color: #333;
+  font-size: 1rem;
+}
+/* === Add / Edit Forms === */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+form {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
   border-radius: 10px;
-  padding: 14px 0;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #66a6ff;
+}
+button {
+  width: 100%;
+  background: linear-gradient(90deg, #66a6ff, #89f7fe);
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease, box-shadow 0.4s ease;
-  box-shadow: 0 4px 15px rgba(102, 166, 255, 0.4);
+  transition: all 0.3s ease;
 }
-.submit-btn:hover {
+button:hover {
   background: linear-gradient(90deg, #4b8be0, #6ed0ff);
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(102, 166, 255, 0.8);
+  transform: scale(1.02);
 }
-/* === ANIMATIONS === */
+/* === Animations === */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-/* === RESPONSIVE DESIGN === */
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-  }
-  .nav-links {
-    margin-top: 10px;
-  }
-  .weather-card {
-    width: 95%;
-    padding: 25px;
-  }
-}
+
+
+
+
+
